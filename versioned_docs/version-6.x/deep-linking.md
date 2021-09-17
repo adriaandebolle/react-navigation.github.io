@@ -315,7 +315,7 @@ const linking = {
 
     // Next, you would need to subscribe to incoming links from your third-party integration
     // For example, to get to subscribe to incoming links from branch.io:
-    branch.subscribe(({ error, params, uri }) => {
+    const branchUnsubscribe = branch.subscribe(({ error, params, uri }) => {
       if (error) {
         console.error('Error from Branch: ' + error);
         return;
@@ -343,7 +343,7 @@ const linking = {
     return () => {
       // Clean up the event listeners
       Linking.removeEventListener('url', onReceiveURL);
-      branch.unsubscribe();
+      branchUnsubscribe();
     };
   },
 
